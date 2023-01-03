@@ -1,0 +1,18 @@
+.square {
+  border-radius: 0px;
+}
+
+.jumbotron {
+  background-image: linear-gradient(to right, #007bff, #000);
+  color: #fff;
+}
+
+.top_pages {
+  text-align: center;
+  padding-top: 65px;
+  height: 200px;
+}
+
+.r-under {
+  text-decoration: none;
+}
