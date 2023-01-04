@@ -24,7 +24,7 @@ const TopNav = () => {
         onClick={(e) => setCurrent(e.key)}
         icon={<AppstoreOutlined />}>
         <Link href="/" legacyBehavior>
-          <a className="r-under">App</a>
+          <a className="r-under">Home</a>
         </Link>
       </Item>
 

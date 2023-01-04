@@ -38,7 +38,7 @@ const Register = () => {
       <h1 className="jumbotron top_pages text-center bg-primary square">
         Register
       </h1>
-      <div className="container col-md-2 pb-6">
+      <div className="container col-md-3 pb-6">
         <form onSubmit={handleSubmit}>
           <input
             type="text"
@@ -57,7 +57,7 @@ const Register = () => {
             required
           /> */}
           <input
-            type="text"
+            type="email"
             className="form-control mb-2 p-2"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -65,7 +65,7 @@ const Register = () => {
             required
           />
           <input
-            type="text"
+            type="password"
             className="form-control mb-2 p-2"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -73,7 +73,7 @@ const Register = () => {
             required
           />
           {/* <input
-            type="text"
+            type="password"
             className="form-control mb-2 p-2"
             value={confirmpassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
@@ -91,7 +91,7 @@ const Register = () => {
         <p className="text-center p-2">
           Already registered?{" "}
           <Link href="/login" legacyBehavior>
-            <a>Login</a>
+            <a className="r-under">Login</a>
           </Link>
         </p>
       </div>
