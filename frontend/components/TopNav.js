@@ -1,50 +1,87 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Menu } from "antd";
 import Link from "next/link";
 import {
   AppstoreOutlined,
+  UserOutlined,
+  HomeFilled,
+  HomeOutlined,
   LoginOutlined,
+  LogoutOutlined,
   UserAddOutlined,
 } from "@ant-design/icons";
+import { Context } from "../context/index";
+import axios from "axios";
+import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 
-const { Item } = Menu;
+const { Item, SubMenu } = Menu;
 
 const TopNav = () => {
   const [current, setCurrent] = useState("");
 
+  const { state, dispatch } = useContext(Context);
+  const { user } = state;
+
+  const router = useRouter();
+
   useEffect(() => {
     process.browser && setCurrent(window.location.pathname);
-    console.log(window.location.pathname);
   }, [process.browser && window.location.pathname]);
+
+  const logout = async () => {
+    dispatch({ type: "LOGOUT" });
+    window.localStorage.removeItem("user");
+    const { data } = await axios.get("/api/logout");
+    toast(data.message);
+    router.push("/login");
+  };
 
   return (
     <Menu mode="horizontal" selectedKeys={[current]}>
-      <Item
-        key="/"
-        onClick={(e) => setCurrent(e.key)}
-        icon={<AppstoreOutlined />}>
+      <Item key="/" onClick={(e) => setCurrent(e.key)} icon={<HomeOutlined />}>
         <Link href="/" legacyBehavior>
           <a className="r-under">Home</a>
         </Link>
       </Item>
+      {user === null && (
+        <SubMenu
+          icon={<AppstoreOutlined />}
+          title="Account"
+          style={{ marginLeft: "auto" }}>
+          <>
+            <Item
+              key="/login"
+              onClick={(e) => setCurrent(e.key)}
+              icon={<LoginOutlined />}
+              style={{ marginLeft: "auto" }}>
+              <Link href="/login" legacyBehavior>
+                <a className="r-under">Login</a>
+              </Link>
+            </Item>
 
-      <Item
-        key="/login"
-        onClick={(e) => setCurrent(e.key)}
-        icon={<LoginOutlined />}>
-        <Link href="/login" legacyBehavior>
-          <a className="r-under">Login</a>
-        </Link>
-      </Item>
-
-      <Item
-        key="/register"
-        onClick={(e) => setCurrent(e.key)}
-        icon={<UserAddOutlined />}>
-        <Link href="/register" legacyBehavior>
-          <a className="r-under">Register</a>
-        </Link>
-      </Item>
+            <Item
+              key="/register"
+              onClick={(e) => setCurrent(e.key)}
+              icon={<UserAddOutlined />}
+              style={{ marginLeft: "0.5px" }}>
+              <Link href="/register" legacyBehavior>
+                <a className="r-under">Register</a>
+              </Link>
+            </Item>
+          </>
+        </SubMenu>
+      )}
+      {user !== null && (
+        <SubMenu
+          icon={<UserOutlined />}
+          title={user && user.firstname}
+          style={{ marginLeft: "auto" }}>
+          <Item onClick={logout} icon={<LogoutOutlined />}>
+            Logout
+          </Item>
+        </SubMenu>
+      )}
     </Menu>
   );
 };

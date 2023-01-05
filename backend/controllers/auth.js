@@ -43,6 +43,7 @@ export const login = async (req, res) => {
     if (!user) return res.status(400).send("No user found");
     // check password
     const match = await comparePassword(password, user.password);
+    if (!match) return res.status(400).send("Password is incorrect");
     // create signed jwt
     const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
       expiresIn: "7d",
@@ -59,5 +60,14 @@ export const login = async (req, res) => {
   } catch (err) {
     console.log(err);
     return res.status(400).send("Error. Try again.");
+  }
+};
+
+export const logout = async (req, res) => {
+  try {
+    res.clearCookie("token");
+    return res.json({ message: "Signout Successfull" });
+  } catch (err) {
+    console.log(err);
   }
 };

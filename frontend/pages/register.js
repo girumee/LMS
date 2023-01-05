@@ -1,16 +1,28 @@
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { SyncOutlined } from "@ant-design/icons";
 import Link from "next/link";
+import { Context } from "../context/index";
+import { useRouter } from "next/router";
 
 const Register = () => {
-  const [firstname, setFirstName] = useState("Grm");
+  const [firstname, setFirstName] = useState("Samuel Tarekegn");
   // const [secondname, setSecondName] = useState("ze");
-  const [email, setEmail] = useState("gize@gmail.com");
-  const [password, setPassword] = useState("marve1");
+  const [email, setEmail] = useState("samitarekegn@gmail.com");
+  const [password, setPassword] = useState("123123");
   // const [confirmpassword, setConfirmPassword] = useState("marve");
   const [loading, setLoading] = useState(false);
+
+  // state
+  const { state } = useContext(Context);
+  const { user } = state;
+
+  // router
+  const router = useRouter();
+  useEffect(() => {
+    if (user !== null) router.push("/");
+  }, [user]);
 
   const handleSubmit = async (e) => {
     //e= Event
@@ -45,7 +57,7 @@ const Register = () => {
             className="form-control mb-2 p-2"
             value={firstname}
             onChange={(e) => setFirstName(e.target.value)}
-            placeholder="firstname"
+            placeholder="First name"
             required
           />
           {/* <input
@@ -53,7 +65,7 @@ const Register = () => {
             className="form-control mb-2 p-2"
             value={secondname}
             onChange={(e) => setSecondName(e.target.value)}
-            placeholder="secondname"
+            placeholder="Second name"
             required
           /> */}
           <input
@@ -69,7 +81,7 @@ const Register = () => {
             className="form-control mb-2 p-2"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="password"
+            placeholder="Password"
             required
           />
           {/* <input
@@ -77,7 +89,7 @@ const Register = () => {
             className="form-control mb-2 p-2"
             value={confirmpassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-            placeholder="confirm password"
+            placeholder="Confirm Password"
             required
           /> */}
           <button

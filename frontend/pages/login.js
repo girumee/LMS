@@ -1,23 +1,28 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { SyncOutlined } from "@ant-design/icons";
 import Link from "next/link";
-import { Context } from "../context";
+import { Context } from "../context/index";
+import { useRouter } from "next/router";
 
 const login = () => {
-  const [email, setEmail] = useState("gize@gmail.com");
-  const [password, setPassword] = useState("marve1");
+  const [email, setEmail] = useState("samitarekegn@gmail.com");
+  const [password, setPassword] = useState("123123");
   // const [confirmpassword, setConfirmPassword] = useState("marve");
   const [loading, setLoading] = useState(false);
 
   // state
   const { state, dispatch } = useContext(Context);
+  const { user } = state;
 
-  console.log("STATE", state);
+  // router
+  const router = useRouter();
+  useEffect(() => {
+    if (user !== null) router.push("/");
+  }, [user]);
 
   const handleSubmit = async (e) => {
-    //e= Event
     e.preventDefault();
     //console.table({email, password, confirmpassword });
     try {
@@ -32,6 +37,10 @@ const login = () => {
         type: "LOGIN",
         payload: data,
       });
+      //save in local storage
+      window.localStorage.setItem("user", JSON.stringify(data));
+      //redirect
+      router.push("/");
       // setLoading(false);
     } catch (err) {
       setLoading(false);
@@ -59,7 +68,7 @@ const login = () => {
             className="form-control mb-2 p-2"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="password"
+            placeholder="Password"
             required
           />
           {/* <input
