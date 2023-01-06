@@ -5,13 +5,14 @@
 .jumbotron {
   background-image: linear-gradient(to right, #007bff, #000);
   color: #fff;
+  padding: 70px;
 }
 
-.top_pages {
+/* .top_pages {
   text-align: center;
   padding-top: 65px;
   height: 200px;
-}
+} */
 
 .r-under {
   text-decoration: none;

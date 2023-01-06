@@ -7,9 +7,9 @@ import { Context } from "../context/index";
 import { useRouter } from "next/router";
 
 const Register = () => {
-  const [firstname, setFirstName] = useState("Samuel Tarekegn");
+  const [firstname, setFirstName] = useState("Tegegn Tarekegn");
   // const [secondname, setSecondName] = useState("ze");
-  const [email, setEmail] = useState("samitarekegn@gmail.com");
+  const [email, setEmail] = useState("tegtarekegn@gmail.com");
   const [password, setPassword] = useState("123123");
   // const [confirmpassword, setConfirmPassword] = useState("marve");
   const [loading, setLoading] = useState(false);
@@ -47,7 +47,7 @@ const Register = () => {
   };
   return (
     <>
-      <h1 className="jumbotron top_pages text-center bg-primary square">
+      <h1 className="jumbotron text-center bg-primary square">
         Register
       </h1>
       <div className="container col-md-3 pb-6">

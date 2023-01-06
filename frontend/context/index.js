@@ -52,7 +52,7 @@ const Provider = ({ children }) => {
               console.log("401 error > logout");
               dispatch({ type: "LOGOUT" });
               window.localStorage.removeItem("user");
-              router.push("/logout");
+              router.push("/login");
             })
             .catch((err) => {
               "AXIOS INTERCEPTORS ERR", err;
