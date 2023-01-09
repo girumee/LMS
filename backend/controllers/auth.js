@@ -81,3 +81,12 @@ export const currentUser = async (req, res) => {
     console.log(err);
   }
 };
+
+export const forgetpassword =  async (req, res) => {
+  try {
+    const { email } = req.body
+    console.log(email)
+  } catch (err) {
+    console.log(err)
+  }
+}

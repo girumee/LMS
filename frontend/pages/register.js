@@ -11,7 +11,7 @@ const Register = () => {
   // const [secondname, setSecondName] = useState("ze");
   const [email, setEmail] = useState("tegtarekegn@gmail.com");
   const [password, setPassword] = useState("123123");
-  // const [confirmpassword, setConfirmPassword] = useState("marve");
+  // const [password, setPassword] = useState("marve");
   const [loading, setLoading] = useState(false);
 
   // state
@@ -87,7 +87,7 @@ const Register = () => {
           {/* <input
             type="password"
             className="form-control mb-2 p-2"
-            value={confirmpassword}
+            value={password}
             onChange={(e) => setConfirmPassword(e.target.value)}
             placeholder="Confirm Password"
             required

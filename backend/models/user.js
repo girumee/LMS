@@ -25,12 +25,6 @@ const userSchema = new Schema(
       min: 6,
       max: 64,
     },
-    // confirmpassword: {
-    //   type: String,
-    //   requied: true,
-    //   min: 6,
-    //   max: 64,
-    // },
     picture: {
       type: String,
       requied: true,
@@ -44,6 +38,10 @@ const userSchema = new Schema(
     sctrip_account_id: "",
     strip_seller: {},
     stripSession: {},
+    passwordResetCode: {
+      data: String,
+      default: "",
+    },  
   },
   { timestamps: true }
 );

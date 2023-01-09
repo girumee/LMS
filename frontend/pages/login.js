@@ -23,7 +23,7 @@ const login = () => {
   }, [user]);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.prevntDefault();
     //console.table({email, password, confirmpassword });
     try {
       setLoading(true);
@@ -86,11 +86,17 @@ const login = () => {
             {loading ? <SyncOutlined spin /> : "Submit"}
           </button>
         </form>
-
-        <p className="text-center p-2">
+                
+        <p className="text-center p-2"> 
           Not yet registered?{" "}
           <Link href="/register" legacyBehavior>
             <a className="r-under">Register</a>
+          </Link>
+        </p>
+
+        <p className="text-center ">
+          <Link href="/forget-password" legacyBehavior>
+            <a className="r-under text-danger">Forget password</a>
           </Link>
         </p>
       </div>
