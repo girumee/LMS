@@ -83,6 +83,7 @@ export const currentUser = async (req, res) => {
   }
 };
 
+<<<<<<< HEAD
 export const forgetpassword = async (req, res) => {
   try {
     const { email } = req.body;
@@ -96,3 +97,13 @@ export const forgetpassword = async (req, res) => {
     console.log(err);
   }
 };
+=======
+export const forgetpassword =  async (req, res) => {
+  try {
+    const { email } = req.body
+    console.log(email)
+  } catch (err) {
+    console.log(err)
+  }
+}
+>>>>>>> 38fdc5231341cbb4daebf43a10c45bf8bcc3e768
