@@ -7,7 +7,7 @@ import { Context } from "../context/index";
 import { useRouter } from "next/router";
 
 const login = () => {
-  const [email, setEmail] = useState("samitarekegn@gmail.com");
+  const [email, setEmail] = useState("tegtarekegn@gmail.com");
   const [password, setPassword] = useState("123123");
   // const [confirmpassword, setConfirmPassword] = useState("marve");
   const [loading, setLoading] = useState(false);
@@ -23,7 +23,7 @@ const login = () => {
   }, [user]);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.prevntDefault();
     //console.table({email, password, confirmpassword });
     try {
       setLoading(true);
@@ -50,7 +50,7 @@ const login = () => {
 
   return (
     <>
-      <h1 className="jumbotron top_pages text-center bg-primary square">
+      <h1 className="jumbotron text-center bg-primary square">
         Login
       </h1>
       <div className="container col-md-3 pb-6">
@@ -86,11 +86,17 @@ const login = () => {
             {loading ? <SyncOutlined spin /> : "Submit"}
           </button>
         </form>
-
-        <p className="text-center p-2">
+                
+        <p className="text-center p-2"> 
           Not yet registered?{" "}
           <Link href="/register" legacyBehavior>
             <a className="r-under">Register</a>
+          </Link>
+        </p>
+
+        <p className="text-center ">
+          <Link href="/forget-password" legacyBehavior>
+            <a className="r-under text-danger">Forget password</a>
           </Link>
         </p>
       </div>

@@ -1,6 +1,7 @@
 import User from "../models/user";
 import { hashPassword, comparePassword } from "../utils/auth";
 import jwt from "jsonwebtoken";
+// import { nanoid } from "nanoid";
 
 export const register = async (req, res) => {
   try {
@@ -77,6 +78,20 @@ export const currentUser = async (req, res) => {
     const user = await User.findById(req._id).select("-password").exec();
     console.log("CURRENT_USER", user);
     return res.json(user);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const forgetpassword = async (req, res) => {
+  try {
+    const { email } = req.body;
+    // console.log(email)
+    //const shortCode = nanoid(6).toUpperCase();
+    const user = await User.findOne({ email });
+    if (!user) return res.status(400).send("User not found");
+
+    //prepare for email
   } catch (err) {
     console.log(err);
   }

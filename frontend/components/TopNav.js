@@ -4,6 +4,7 @@ import Link from "next/link";
 import {
   AppstoreOutlined,
   UserOutlined,
+  DashboardOutlined,
   HomeFilled,
   HomeOutlined,
   LoginOutlined,
@@ -15,7 +16,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 
-const { Item, SubMenu } = Menu;
+const { Item, SubMenu, ItemGroup } = Menu;
 
 const TopNav = () => {
   const [current, setCurrent] = useState("");
@@ -34,7 +35,7 @@ const TopNav = () => {
     window.localStorage.removeItem("user");
     const { data } = await axios.get("/api/logout");
     toast(data.message);
-    router.push("/login");
+    router.push("/login")
   };
 
   return (
@@ -77,9 +78,17 @@ const TopNav = () => {
           icon={<UserOutlined />}
           title={user && user.firstname}
           style={{ marginLeft: "auto" }}>
-          <Item onClick={logout} icon={<LogoutOutlined />}>
-            Logout
-          </Item>
+
+          <ItemGroup>
+            <Item key="/user" icon={<DashboardOutlined />}>
+              <Link href="/user" legacyBehavior>
+                <a className="r-under">Dashboard</a>
+              </Link>
+            </Item>
+            <Item onClick={logout} icon={<LogoutOutlined />}>
+              Logout
+            </Item>
+          </ItemGroup>
         </SubMenu>
       )}
     </Menu>
